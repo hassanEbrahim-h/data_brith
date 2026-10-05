@@ -1,0 +1,424 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nora 🎂</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background:
+                radial-gradient(circle at top left, #ffd6e7, transparent 35%),
+                radial-gradient(circle at bottom right, #d8c8ff, transparent 35%),
+                linear-gradient(135deg, #fce4ec, #e8eaf6);
+            overflow-x: hidden;
+            color: #333;
+        }
+        /* =========================
+           Floating Hearts
+        ========================= */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            animation: floatHeart 7s linear infinite;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .heart:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .heart:nth-child(2) {
+            left: 30%;
+            animation-delay: 2s;
+        }
+        .heart:nth-child(3) {
+            left: 55%;
+            animation-delay: 4s;
+        }
+        .heart:nth-child(4) {
+            left: 80%;
+            animation-delay: 1s;
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* =========================
+           Main Card
+        ========================= */
+        .card-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 28px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 20px 50px rgba(108, 92, 231, 0.18);
+            animation: cardAppear 0.8s ease;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        /* =========================
+           Birthday Icon
+        ========================= */
+        .birthday-icon {
+            font-size: 55px;
+            margin-bottom: 8px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        /* =========================
+           Title
+        ========================= */
+        h1 {
+            font-size: 29px;
+            color: #6c5ce7;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        /* =========================
+           Buttons
+        ========================= */
+        .btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow:
+                0 7px 18px rgba(0, 0, 0, 0.10);
+        }
+        .btn-red {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff7675,
+                    #e84393
+                );
+        }
+        .btn-purple {
+            background:
+                linear-gradient(
+                    135deg,
+                    #a29bfe,
+                    #6c5ce7
+                );
+        }
+        .btn-blue {
+            background:
+                linear-gradient(
+                    135deg,
+                    #74b9ff,
+                    #0984e3
+                );
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        /* =========================
+           Content Box
+        ========================= */
+        .content-box {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 18px;
+            margin-top: 0;
+            padding: 0 18px;
+            box-shadow:
+                0 7px 20px rgba(0, 0, 0, 0.06);
+            transition:
+                max-height 0.6s ease,
+                opacity 0.4s ease,
+                padding 0.4s ease,
+                margin 0.4s ease;
+        }
+        .content-box.show {
+            opacity: 1;
+            max-height: 900px;
+            margin-top: 15px;
+            padding: 25px 18px;
+        }
+        /* =========================
+           Cake
+        ========================= */
+        .cake-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #e84393;
+            margin-bottom: 15px;
+        }
+        .cake-img {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            height: 350px;
+            margin: 15px auto 0;
+            object-fit: contain;
+            border-radius: 18px;
+            background: #fafafa;
+            padding: 5px;
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.10);
+        }
+        /* =========================
+           Message
+        ========================= */
+        .birthday-message {
+            font-size: 15px;
+            line-height: 2;
+            color: #444;
+            font-weight: 600;
+            text-align: center;
+        }
+        .birthday-message .highlight {
+            color: #e84393;
+            font-weight: 700;
+        }
+        /* =========================
+           Date
+        ========================= */
+        .date-content {
+            font-size: 19px;
+            color: #6c5ce7;
+            font-weight: 700;
+            padding: 5px;
+        }
+        /* =========================
+           Footer
+        ========================= */
+        .footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #888;
+        }
+        /* =========================
+           Mobile
+        ========================= */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            .card-container {
+                padding: 28px 18px;
+                border-radius: 23px;
+            }
+            .birthday-icon {
+                font-size: 48px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .subtitle {
+                font-size: 13px;
+            }
+            .btn {
+                padding: 13px;
+                font-size: 14px;
+            }
+            /* Bigger Image On Mobile */
+            .cake-img {
+                width: 100%;
+                max-width: 380px;
+                height: 300px;
+                object-fit: contain;
+            }
+            .birthday-message {
+                font-size: 13px;
+                line-height: 1.9;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💜</div>
+    <!-- Main Card -->
+    <div class="card-container">
+        <!-- Birthday Icon -->
+        <div class="birthday-icon">
+            🎂
+        </div>
+        <!-- Title -->
+        <h1>
+            Happy Birthday Nora 🎉
+        </h1>
+        <p class="subtitle">
+            To my beautiful sister ❤️
+        </p>
+        <!-- Cake Button -->
+        <button
+            class="btn btn-red"
+            onclick="toggleContent('cakeText')">
+            <i class="fa-solid fa-cake-candles"></i>
+            Show Birthday Cake
+        </button>
+        <!-- Message Button -->
+        <button
+            class="btn btn-purple"
+            onclick="toggleContent('messageText')">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            Birthday Message
+        </button>
+        <!-- Date Button -->
+        <button
+            class="btn btn-blue"
+            onclick="toggleContent('dateText')">
+            <i class="fa-solid fa-calendar-days"></i>
+            6 / 10 / 2010
+        </button>
+        <!-- =========================
+             Cake Content
+        ========================= -->
+        <div
+            id="cakeText"
+            class="content-box">
+            <div class="cake-title">
+                🎂 Birthday Cake 🎂
+            </div>
+            <img
+                src="WhatsApp Image 2026-10-05 at 10.05.49 PM.jpeg"
+                alt="Birthday Cake"
+                class="cake-img"
+            >
+        </div>
+        <!-- =========================
+             Message Content
+        ========================= -->
+        <div
+            id="messageText"
+            class="content-box">
+            <p class="birthday-message">
+                Today is not an ordinary day because it’s the birthday of my dearest sister! 🎊🎉🥰
+                <br><br>
+                Happy birthday to the love of my heart 💗💞
+                <br><br>
+                Wishing you a million beautiful years filled with happiness, success, and everything you wish for. ❤️
+                <br><br>
+                I hope I always see you the happiest person in the world. 🥰
+                <br><br>
+                May God always keep you in my life and never let me lose you. 🤲❤️
+                <br><br>
+                You’re not just my sister, you’re a precious part of my heart and my life. 🫂💕
+                <br><br>
+                <span class="highlight">
+                    Happy Birthday, My Sister! 🎂🎉❤️
+                </span>
+                <br><br>
+                I love you so much! 💞
+            </p>
+        </div>
+        <!-- =========================
+             Date Content
+        ========================= -->
+        <div
+            id="dateText"
+            class="content-box">
+            <div class="date-content">
+                💜 Date of Birth 💜
+                <br><br>
+                🎂 6 / 10 / 2010 🎂
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            Made with ❤️ especially for Nora
+        </div>
+    </div>
+    <!-- =========================
+         JavaScript
+    ========================= -->
+    <script>
+        function toggleContent(id) {
+            const element =
+                document.getElementById(id);
+            const allBoxes =
+                document.querySelectorAll(".content-box");
+            // Close other boxes
+            allBoxes.forEach(box => {
+                if (box.id !== id) {
+                    box.classList.remove("show");
+                }
+            });
+            // Toggle selected box
+            if (element.classList.contains("show")) {
+                element.classList.remove("show");
+            } else {
+                element.classList.add("show");
+            }
+        }
+    </script>
+</body>
+</html>
